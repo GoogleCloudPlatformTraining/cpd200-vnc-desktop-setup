@@ -42,4 +42,7 @@ x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
 EOT
 chmod u+x .vnc/xstartup
+cat >/etc/profile.d/env_vars.sh <<'EOT'
+PATH=$PATH:/opt/google/google_appengine
+EOT
 reboot
