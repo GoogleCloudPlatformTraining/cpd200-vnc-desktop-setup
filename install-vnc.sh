@@ -21,7 +21,6 @@ dpkg --add-architecture i386
 apt-get update
 apt-get install -y google-chrome-stable \
                    zip \
-                   git \
                    openjdk-7-jdk \
                    vnc4server \
                    gnome-core \
