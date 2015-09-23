@@ -45,4 +45,10 @@ chmod u+x .vnc/xstartup
 cat >/etc/profile.d/env_vars.sh <<'EOT'
 PATH=$PATH:/opt/google/google_appengine
 EOT
+# enable password based SSH authentication for VNC
+cp -p $SSH_CONFIG $SSH_CONFIG.orig &&
+awk '
+$1=="PasswordAuthentication" {$2="yes"}
+{print}
+' $SSH_CONFIG.orig > $SSH_CONFIG
 reboot
