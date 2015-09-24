@@ -55,6 +55,7 @@ awk '
 $1=="PasswordAuthentication" {$2="yes"}
 {print}
 ' $SSH_CONFIG.orig > $SSH_CONFIG
+/etc/init.d/ssh restart
 # create a VNC linux user
 useradd -s /bin/bash -m -d /home/vnc vnc
 # reboot
