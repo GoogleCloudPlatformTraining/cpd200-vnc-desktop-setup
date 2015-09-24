@@ -57,4 +57,5 @@ $1=="PasswordAuthentication" {$2="yes"}
 ' $SSH_CONFIG.orig > $SSH_CONFIG
 # create a VNC linux user
 useradd -s /bin/bash -m -d /home/vnc vnc
-reboot
+# reboot
+sudo startx
