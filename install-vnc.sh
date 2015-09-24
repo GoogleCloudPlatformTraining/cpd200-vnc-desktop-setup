@@ -29,8 +29,8 @@ apt-get install -y -qq google-chrome-stable \
                        ia32-libs \
                        lib32ncurses5-dev \
                        lib32stdc++6
-mkdir .vnc
-cat >.vnc/xstartup <<'EOT'
+mkdir /home/$SUDO_USER/.vnc
+cat >/home/$SUDO_USER/.vnc/xstartup <<'EOT'
 #!/bin/sh
 # Uncomment the following two lines for normal desktop:
 # unset SESSION_MANAGER
@@ -42,8 +42,8 @@ vncconfig -iconic &
 x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
 EOT
-chown $SUDO_USER:$SUDO_USER .vnc .vnc/xstartup
-chmod u+x .vnc/xstartup
+chown $SUDO_USER:$SUDO_USER /home/$SUDO_USER/.vnc /home/$SUDO_USER/.vnc/xstartup
+chmod u+x /home/$SUDO_USER/.vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
 cat >/etc/profile.d/env_vars.sh <<'EOT'
 PATH=$PATH:/opt/google/google_appengine
