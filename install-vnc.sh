@@ -42,7 +42,7 @@ vncconfig -iconic &
 x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
 EOT
-chown $USER:$USER .vnc .vnc/xstartup
+chown $SUDO_USER:$SUDO_USER .vnc .vnc/xstartup
 chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
 cat >/etc/profile.d/env_vars.sh <<'EOT'
