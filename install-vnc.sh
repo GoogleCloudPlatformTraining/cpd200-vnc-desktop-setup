@@ -22,7 +22,7 @@ sudo dpkg --add-architecture i386
 echo "Updating package lists..."
 sudo apt-get -qq update
 echo "Installing Gnome desktop environment. Please be patient, this may take a while..."
-sudoapt-get install -y -qq gnome-core --no-install-recommends
+sudo apt-get install -y -qq gnome-core --no-install-recommends
 sudo apt-get install -y -qq google-chrome-stable \
                             git \
                             zip \
@@ -46,16 +46,15 @@ gnome-session &
 EOT
 chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
-sudo cat >/etc/profile.d/env_vars.sh <<'EOT'
-PATH=$PATH:/opt/google/google_appengine
-EOT
+sudo bash -c "PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
 # enable password based SSH authentication for VNC
 SSH_CONFIG=/etc/ssh/sshd_config
-sudo cp -p $SSH_CONFIG $SSH_CONFIG.orig &&
+sudo cp -p $SSH_CONFIG $SSH_CONFIG.orig
 sudo awk '
 $1=="PasswordAuthentication" {$2="yes"}
 {print}
-' $SSH_CONFIG.orig > $SSH_CONFIG
+' $SSH_CONFIG.orig
+sudo cp -p $SSH_CONFIG.orig $SSH_CONFIG
 sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
