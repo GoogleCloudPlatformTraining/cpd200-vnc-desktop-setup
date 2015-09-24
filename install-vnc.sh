@@ -43,8 +43,6 @@ xsetroot -solid grey
 vncconfig -iconic &
 x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
 EOT
 chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
@@ -54,3 +52,10 @@ sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/
 sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
+echo "Please configure a VNC password:"
+vncserver :1
+DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
+DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
+vncserver -kill :1
+echo "Please choose a password for the vnc SSH connection:"
+sudo passwd vnc
