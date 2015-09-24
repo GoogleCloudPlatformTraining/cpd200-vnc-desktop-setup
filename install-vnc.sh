@@ -46,15 +46,9 @@ gnome-session &
 EOT
 chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
-sudo bash -c "PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
+sudo bash -c "echo PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
 # enable password based SSH authentication for VNC
 sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
-echo "Please configure a VNC password:"
-vncpasswd
-vncserver :1
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
-vncserver -kill :1
