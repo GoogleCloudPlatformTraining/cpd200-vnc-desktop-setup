@@ -61,4 +61,4 @@ $1=="PasswordAuthentication" {$2="yes"}
 # create a VNC linux user
 useradd -s /bin/bash -m -d /home/vnc vnc
 # reboot
-sudo startx
+sudo /etc/init.d/gdm3 start
