@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+# add Google Chrome source for installation
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 dpkg --add-architecture i386
@@ -41,6 +42,7 @@ x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
 EOT
 chmod u+x .vnc/xstartup
+# Modify the PATH variable for all users to include App Engine SDK
 cat >/etc/profile.d/env_vars.sh <<'EOT'
 PATH=$PATH:/opt/google/google_appengine
 EOT
@@ -51,4 +53,6 @@ awk '
 $1=="PasswordAuthentication" {$2="yes"}
 {print}
 ' $SSH_CONFIG.orig > $SSH_CONFIG
+# create a VNC linux user
+useradd -s /bin/bash -m -d /home/vnc vnc
 reboot
