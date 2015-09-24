@@ -53,9 +53,8 @@ sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
 echo "Please configure a VNC password:"
+vncpasswd
 vncserver :1
 DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
 DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
 vncserver -kill :1
-echo "Please choose a password for the vnc SSH connection:"
-sudo passwd vnc
