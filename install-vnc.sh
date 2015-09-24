@@ -43,6 +43,8 @@ xsetroot -solid grey
 vncconfig -iconic &
 x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 gnome-session &
+DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
+DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
 EOT
 chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
@@ -58,5 +60,3 @@ sudo cp -p $SSH_CONFIG.orig $SSH_CONFIG
 sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['']"
-DISPLAY=:1 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['']"
