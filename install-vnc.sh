@@ -50,7 +50,7 @@ chmod u+x .vnc/xstartup
 # Modify the PATH variable for all users to include App Engine SDK
 sudo bash -c "PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
 # enable password based SSH authentication for VNC
-sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
+sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
 # create a VNC linux user
 sudo useradd -s /bin/bash -m -d /home/vnc vnc
