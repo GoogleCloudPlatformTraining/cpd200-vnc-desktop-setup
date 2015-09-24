@@ -20,15 +20,15 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 dpkg --add-architecture i386
 apt-get update
-apt-get install -y gnome-core --no-install-recommends
-apt-get install -y google-chrome-stable \
-                   git \
-                   zip \
-                   openjdk-7-jdk \
-                   vnc4server \
-                   ia32-libs \
-                   lib32ncurses5-dev \
-                   lib32stdc++6
+apt-get install -y -qq gnome-core --no-install-recommends
+apt-get install -y -qq google-chrome-stable \
+                       git \
+                       zip \
+                       openjdk-7-jdk \
+                       vnc4server \
+                       ia32-libs \
+                       lib32ncurses5-dev \
+                       lib32stdc++6
 mkdir .vnc
 cat >.vnc/xstartup <<'EOT'
 #!/bin/sh
