@@ -49,7 +49,7 @@ chmod u+x .vnc/xstartup
 # First for Gnome terminal
 echo PATH=$PATH:/opt/google/google_appengine >> .bashrc
 # Then for SSH connecitons
-sudo bash -c "PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
+sudo bash -c "echo PATH=$PATH:/opt/google/google_appengine >> /etc/profile.d/env_vars.sh"
 # enable password based SSH authentication for VNC
 sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
